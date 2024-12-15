@@ -11,6 +11,15 @@ import java.util.Random;
 public class GameBoard {
     public static final int DEAD_CELL_VALUE = 0;
     public static final int LIVE_CELL_VALUE = 1;
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     private final int width;
     private final int height;
     private ArrayList<ArrayList<Integer>> board;
@@ -19,16 +28,14 @@ public class GameBoard {
         this.width = width;
         this.height = height;
         this.board = new ArrayList<>();
-        this.board = this.generateDeadBoard(this.width, this.height);
+        this.board = this.generateDeadBoard();
     }
 
     /**
      * Generates a board where all cells are in a dead state
-     * @param width the width of the board
-     * @param height the height of the board
      * @return an arraylist that represents the board in a dead state
      */
-    public ArrayList<ArrayList<Integer>> generateDeadBoard(int width, int height) {
+    public ArrayList<ArrayList<Integer>> generateDeadBoard() {
         ArrayList<ArrayList<Integer>> deadBoard = new ArrayList<>();
         for (int i = 0; i < height; i++) {
             ArrayList<Integer> row = new ArrayList<>();
@@ -52,7 +59,7 @@ public class GameBoard {
      * randomizes the state of this board between live and dead cells
      */
     public void randomizeState() {
-        this.board = this.generateDeadBoard(this.width, this.height);
+        this.board = this.generateDeadBoard();
         Random randomizer = new Random();
         for (ArrayList<Integer> currentList : this.board) {
             for (int i = 0; i < currentList.size(); i++) {
