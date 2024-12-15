@@ -15,15 +15,15 @@ public class GameLoop {
         this.height = height;
     }
 
-    public void runGame() throws InterruptedException, IOException {
+    public void runGame(int runSpeed) throws InterruptedException, IOException {
         int count = 0;
         GameBoard board = new GameBoard(width, height);
         board.randomizeState();
         while (count < 90000) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             Render.renderBoard(board);
             board.setBoard(GameActions.generateNextBoardState(board));
-            TimeUnit.SECONDS.sleep(1);
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            TimeUnit.MILLISECONDS.sleep(runSpeed);
             count++;
         }
 

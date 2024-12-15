@@ -14,7 +14,9 @@ public class Main {
         int width = scan.nextInt();
         System.out.println("Enter height:");
         int height = scan.nextInt();
+        System.out.println("Enter Refresh speed in Miliseconds: ");
+        int refreshSpeed = scan.nextInt();
         GameLoop gameLoop = new GameLoop(width, height);
-        gameLoop.runGame();
+        gameLoop.runGame(refreshSpeed);
     }
 }
