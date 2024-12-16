@@ -12,25 +12,31 @@ public class Render {
 
     public static void renderBoard(GameBoard board) {
         var boardState = board.getBoard();
+        StringBuilder sb = new StringBuilder();
         for (ArrayList<Integer> row : boardState) {
-            printRow(row);
+            sb.append(printRow(row));
+            sb.append(System.lineSeparator());
         }
+        System.out.println(sb);
     }
 
-    private static void printRow(ArrayList<Integer> row) {
-        System.out.print(BOARD_BORDER_SYMBOL);
+    private static String printRow(ArrayList<Integer> row) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(BOARD_BORDER_SYMBOL);
         for (Integer currentValue : row) {
-            printCellSymbolWithState(currentValue);
+            sb.append(printCellSymbolWithState(currentValue));
         }
-        System.out.println(BOARD_BORDER_SYMBOL);
+        sb.append(BOARD_BORDER_SYMBOL);
+        return sb.toString();
     }
 
-    private static void printCellSymbolWithState(Integer cellValue) {
+    private static char printCellSymbolWithState(Integer cellValue) {
         if (cellValue == GameBoard.DEAD_CELL_VALUE) {
-            System.out.print(DEAD_CELL_SYMBOL);
+            return DEAD_CELL_SYMBOL;
         }
         if (cellValue == GameBoard.LIVE_CELL_VALUE) {
-            System.out.print(LIVE_CELL_SYMBOL);
+            return LIVE_CELL_SYMBOL;
         }
+        return  '-';
     }
 }
